@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudCoin", "CloudCoin.csproj", "{161D5DE1-7839-4E72-81F9-088E591EBCF7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E1CFCCDB-4ACE-4D89-AD4C-A30955A4A9AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudCoin.Tests", "tests\CloudCoin.Tests\CloudCoin.Tests.csproj", "{968C6A94-3C80-4523-9E9B-625311030CBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,11 +19,18 @@ Global
 		{161D5DE1-7839-4E72-81F9-088E591EBCF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{161D5DE1-7839-4E72-81F9-088E591EBCF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{161D5DE1-7839-4E72-81F9-088E591EBCF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{968C6A94-3C80-4523-9E9B-625311030CBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{968C6A94-3C80-4523-9E9B-625311030CBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{968C6A94-3C80-4523-9E9B-625311030CBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{968C6A94-3C80-4523-9E9B-625311030CBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CB473B5E-BE96-4307-A016-1FFA7BAE034B}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{968C6A94-3C80-4523-9E9B-625311030CBA} = {E1CFCCDB-4ACE-4D89-AD4C-A30955A4A9AE}
 	EndGlobalSection
 EndGlobal
