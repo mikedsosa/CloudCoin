@@ -10,7 +10,7 @@ using EllipticCurve;
 
 namespace CloudCoin
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {

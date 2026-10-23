@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Concurrent;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using Newtonsoft.Json;
-using EllipticCurve;
-using System.Transactions;
 
 namespace CloudCoin
 {
-    class Block
+    public class Block
     {
         public int Index { get; set; }
         public string PreviousHash { get; set; }
@@ -25,26 +20,37 @@ namespace CloudCoin
             this.Timestamp = timestamp;
             this.Transactions = transactions;
             this.PreviousHash = previousHash;
-            this.Hash = CalculateHash();
             this.Nonce = 0;
+            this.Hash = CalculateHash();
         }
+
         public string CalculateHash()
         {
-            string blockData = this.Index + this.PreviousHash + this.Timestamp + this.Transactions.ToString() + this.Nonce;
-            byte[] blockBytes = Encoding.ASCII.GetBytes(blockData);
-            byte[] hashBytes = SHA256.Create().ComputeHash(blockBytes);
-            return BitConverter.ToString(hashBytes).Replace("-", "");
+            // Previously this concatenated Transactions.ToString(), which is only the
+            // list's type name, so the block hash did not cover the transactions.
+            string transactionData = string.Join(";", this.Transactions.Select(t => t.Serialize()));
+            string blockData = string.Join("|",
+                this.Index.ToString(CultureInfo.InvariantCulture),
+                this.PreviousHash ?? "",
+                this.Timestamp ?? "",
+                transactionData,
+                this.Nonce.ToString(CultureInfo.InvariantCulture));
+            return Transaction.Sha256Hex(blockData);
         }
+
+        public bool HasValidProofOfWork(int difficulty)
+        {
+            return this.Hash != null && this.Hash.StartsWith(new string('0', difficulty), StringComparison.Ordinal);
+        }
+
         public void Mine(int difficulty)
         {
-            while (this.Hash.Substring(0, difficulty) != new string('0', difficulty))
+            while (!HasValidProofOfWork(difficulty))
             {
                 this.Nonce++;
                 this.Hash = this.CalculateHash();
-                //Console.WriteLine("Mining: " + this.Hash);
             }
             Console.WriteLine("Block has been mined: " + this.Hash);
         }
     }
 }
-
