@@ -2,6 +2,9 @@
 
 [![CI](https://github.com/mikedsosa/CloudCoin/actions/workflows/ci.yml/badge.svg)](https://github.com/mikedsosa/CloudCoin/actions/workflows/ci.yml)
 
+## What this shows
+A security review of my own old code. I wrote CloudCoin in 2021 for a college course, following the SavjeeCoin design, and came back to it in 2026 as an applied-cryptography exercise. The review found real flaws, including a block hash that ignored transaction contents and chain validation that never re-checked signatures. Each fix has a test, and I confirmed the tampering regression test fails when the old hashing is put back. It's still a single-process demo, and the remaining limitations are listed below.
+
 A small C# blockchain that uses **ECDSA digital signatures** to prove who authorized a transaction and **SHA-256 hash links** to make edits to past blocks detectable. It includes a security review of its original code, the fixes that came out of that review, and tests that prove each fix.
 
 > **Educational project.** CloudCoin started as 2021 coursework. The assignment was to *"create your own blockchain and have a (mostly) functional cryptocurrency."* It runs in memory as a single process and is not a real currency. See [Remaining limitations](#remaining-limitations).
