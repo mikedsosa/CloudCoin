@@ -9,6 +9,10 @@ A small C# blockchain that uses **ECDSA digital signatures** to prove who author
 
 > **Educational project.** CloudCoin started as 2021 coursework. The assignment was to *"create your own blockchain and have a (mostly) functional cryptocurrency."* It runs in memory as a single process and is not a real currency. See [Remaining limitations](#remaining-limitations).
 
+## Lab / how to run
+
+Educational single-process C# blockchain demo with ECDSA signatures and SHA-256 hash links; not a real currency and not networked. Requires the .NET 8 SDK. Run the demo with `dotnet run --project CloudCoin.csproj` and the tests with `dotnet test CloudCoin.sln` (see [Build, run and test](#build-run-and-test)).
+
 ## The problem
 
 Any shared ledger has to answer two questions:
